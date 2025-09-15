@@ -1,0 +1,19 @@
+FROM node:8
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy all project files
+COPY . .
+
+# Install global tools and dependencies
+RUN npm install -g bower bower-art-resolver && \
+    echo '{ "allow_root": true }' > /root/.bowerrc && \
+    bower install && \
+    npm install
+
+# Expose the ports your app uses
+EXPOSE 80 443 3000
+
+# Start the app using bin/www
+CMD ["node", "bin/www"]

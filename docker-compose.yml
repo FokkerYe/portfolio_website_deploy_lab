@@ -1,0 +1,11 @@
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: website_app
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3000:3000"
+    restart: unless-stopped
